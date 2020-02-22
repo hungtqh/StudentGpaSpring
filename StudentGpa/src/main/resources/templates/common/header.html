@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml"
+	xmlns:sec="http://www.w3.org/1999/xhtml">
+<head th:fragment="common-header">
+<meta charset="utf-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
+
+<title>Student Gpa PTIT</title>
+
+<link rel="canonical"
+	href="https://getbootstrap.com/docs/4.0/examples/navbars/">
+
+<!-- Bootstrap core CSS -->
+<link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<!-- Custom styles for this template -->
+<link th:href="@{/css/style.css}" rel="stylesheet">
+
+<link rel="icon" th:href="@{/image/favicon.png}">
+
+<!-- Rich text tinymce api -->
+<script
+	src="https://cdn.tiny.cloud/1/xyan6igjxs77pu6l5zf2ymmxx786z779u3gerloia451o90c/tinymce/5/tinymce.min.js"
+	referrerpolicy="origin"></script>
+<script>
+	tinymce.init({
+		selector : 'textarea'
+	});
+</script>
+
+<!-- Data table -->
+<link th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet">
+<link th:href="@{/css/dataTables.bootstrap4.min.css}" rel="stylesheet">
+</head>
+
+<body>
+
+	<!-- Navbar -->
+	<div th:fragment="navbar">
+		<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#navbar" aria-controls="navbarTogglerDemo03"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<a class="navbar-brand" th:href="@{/}">PTIT Student</a>
+
+			<div class="collapse navbar-collapse" id="navbar">
+				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+					<li style="margin: 0 50px;"><a class="nav-link"
+						th:href="@{/student/studentMark}">Xem điểm</a></li>
+
+				</ul>
+
+				<ul class="navbar-nav ml-auto">
+
+					<li class="studentInfo" style="">Chào bạn <span
+						th:text="${student.name} + ' (' + ${student.code} + ')'"></span></li>
+
+					<!-- Dropdown -->
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
+						role="button" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false"> Xem thông tin </a>
+						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+							<a class="dropdown-item" href="#">Xem chương trình đào tạo</a> <a
+								class="dropdown-item" href="#"> Xem thông tin cá nhân</a>
+						</div></li>
+
+					<li style="margin-right: 40px;"><a class="nav-link"
+						th:href="@{/logout}">Thoát</a></li>
+				</ul>
+			</div>
+		</nav>
+	</div>
+	<!-- End of navbar -->
+	
+	<div th:fragment="footer" class="p-3 mb-2 bg-dark text-white">
+		<br />
+		<br />
+		<footer>
+			<div class="row">
+				<div class="col-sm-3 footerleft">
+					<div class="logofooter">
+						<a th:href="@{/}"><img class="img-fluid"
+							src="/image/logo.png" style="width: 200px;" /></a>
+					</div>
+				</div>
+				<div class="col-sm-3 paddingtop-bottom">
+					<h6 class="heading7">Liên hệ</h6>
+					<ul class="post">
+						<p>
+							<i class="fa fa-map-pin"></i> Nguyễn Trãi<br /> Hà Đông, Hà Nội
+						</p>
+						<p>
+							<i class="fa fa-phone"></i> Điện thoại (VN) : +0210 3556 442
+						</p>
+						<p>
+							<i class="fa fa-envelope"></i> E-mail : ptit@gmail.com
+						</p>
+					</ul>
+				</div>
+				<div class="col-sm-3 paddingtop-bottom">
+					<h6 class="heading7">Liên kết</h6>
+					<ul class="footer-ul">
+						<li><a href="#"> Thông tin cá nhân</a></li>
+						<li><a href="#"> Nghiên cứu khoa học</a></li>
+						<li><a href="#"> Câu hỏi thường gặp</a></li>
+					</ul>
+				</div>
+				<div class="col-sm-3 paddingtop-bottom">
+					<h6 class="heading7">Giờ làm việc</h6>
+					<div class="post">
+						<p>Thứ 2 - Thứ 7: 9am - 11pm</p>
+						<p>Chủ nhật: 10am - 10pm</p>
+					</div>
+				</div>
+			</div>
+		</footer>
+	</div>
+
+	<div th:fragment="body-bottom-scripts">
+		<!-- Bootstrap core JavaScript
+    ================================================== -->
+		<!-- Placed at the end of the document so the pages load faster -->
+		<script th:src="@{/js/jquery-3.2.1.slim.min.js}"></script>
+		<script th:src="@{/js/popper.min.js}"></script>
+		<script th:src="@{/js/bootstrap.min.js}"></script>
+		<script th:src="@{/js/jquery.dataTables.min.js}"></script>
+		<script th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
+
+	</div>
+</body>
+</html>

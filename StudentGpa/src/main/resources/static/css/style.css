@@ -1,0 +1,97 @@
+body {
+  padding-bottom: 20px;
+}
+
+hr {
+	border: none;
+	height: 1px;
+	color: #333;
+	background-color: #bbc2ca;
+	margin-top: 0;
+	margin-bottom: 20px;
+}
+
+.navbar {
+  margin-bottom: 20px;
+}
+
+.box {
+	border: 1px solid red;
+}
+
+.page-top {
+	margin-top: -70px;
+}
+
+.home-headline {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 22px;
+	color: #fff;
+	margin: auto;
+	text-align: center;
+	margin-top: -10px;
+}
+
+.home-headline span {
+	background-color: #231F20;
+	padding: 5px 22px;
+}
+
+.card {
+	margin-bottom: 25px;
+}
+
+#feature-books {
+	margin-top: 5px;
+}
+
+.form-inline {
+	margin-top: 8px;
+}
+
+#navbar-default li {
+	margin-right: 20px;
+}
+
+.navbar {
+	padding: 0;
+}
+
+.navbar-light .navbar-nav .nav-link, .navbar-light .navbar-brand , .studentInfo{
+    color: #dfe7ef;
+}
+
+.studentInfo {
+	display: block;
+   	padding: .5rem 1rem;
+}
+
+.navbar-brand {
+    margin-left: 40px;
+}
+
+.col-form-label {
+	font-weight: 500;
+}
+
+.bg-light {
+    background-color: #921622!important;
+}
+
+.section-headline {
+	font-family: 'Times New Roman', Times, serif;
+	font-size: 22px;
+	color: #fff;
+	margin: auto;
+	text-align: center;
+	margin-top: 54px;
+}
+
+.footer-ul a {
+	color: white;
+}
+
+.section-headline span {
+	background-color: #231F20;
+	padding: 5px 22px;
+}

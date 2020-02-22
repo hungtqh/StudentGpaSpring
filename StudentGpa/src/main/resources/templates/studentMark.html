@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:replace="common/header :: common-header" />
+<body>
+	<div th:replace="common/header :: navbar" />
+
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4 card border-primary mb-3">
+				<div class="card-body text-primary">
+					<p class="card-text">
+						<strong>Mã sinh viên: </strong><span th:text="${student.code}"></span>
+					</p>
+					<p class="card-text">
+						<strong>Tên sinh viên: </strong><span th:text="${student.name}"></span>
+					</p>
+					<p class="card-text">
+						<strong>Lớp: </strong><span th:text="${student.studentClass.name}"></span>
+					</p>
+					<p class="card-text">
+						<strong>Ngành: </strong><span th:text="${student.major.name}"></span>
+					</p>
+				</div>
+			</div>
+			<div class="col-sm-4"></div>
+		</div>
+
+		<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+
+				<form class="form-inline my-2 my-lg-0"
+					th:action="@{/student/studentMark}" method="post">
+					<label for="semesterName">Nhập học kỳ:(vd: 20191)
+						&nbsp;&nbsp;&nbsp;</label> <input class="form-control mr-sm-2" type="text"
+						placeholder="Học kỳ" aria-label="Xem điểm" name="semesterName"
+						id="semesterName">
+					<button class="btn btn-outline-success my-2 my-sm-0" type="submit">Xem</button>
+				</form>
+			</div>
+			<div class="col-sm-3">
+				<br> <br>
+			</div>
+		</div>
+
+		<div class="table-responsive">
+			<table id="bookListTable"
+				class="table table-bordered table-hover table-striped">
+				<thead>
+					<tr>
+						<td colspan="13"><p th:if="${hasResult}">
+								Học kỳ <span th:text="${semesterName}"></span>
+							</p></td>
+					</tr>
+					<tr>
+						<th>STT</th>
+						<th>Mã Môn</th>
+						<th>Tên Môn</th>
+						<th>TC</th>
+						<th>% CC</th>
+						<th>% KT</th>
+						<th>% Thi</th>
+						<th>Điểm CC</th>
+						<th>Điểm KT</th>
+						<th>Điểm thi</th>
+						<th>TK(10)</th>
+						<th>TK(CH)</th>
+						<th>KQ</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr data-th-each="mark, status : ${marks}">
+						<td th:text="${status.index + 1}"></td>
+						<td th:text="${mark.key.code}"></td>
+						<td th:text="${mark.key.name}"></td>
+						<td th:text="${mark.key.numberOfCredits}"></td>
+						<td
+							th:text="${#numbers.formatDecimal((mark.key.mark1Percent*100), 0, 'COMMA', 0, 'POINT' )}"></td>
+						<td
+							th:text="${#numbers.formatDecimal((mark.key.mark2Percent*100), 0, 'COMMA', 0, 'POINT' )}"></td>
+						<td
+							th:text="${#numbers.formatDecimal((mark.key.mark3Percent*100), 0, 'COMMA', 0, 'POINT' )}"></td>
+
+						<td th:text="${mark.value.mark1}"></td>
+						<td th:text="${mark.value.mark2}"></td>
+						<td th:text="${mark.value.mark3}"></td>
+						<td th:text="${mark.value.averageMark}"></td>
+						<td th:text="${mark.value.markToChar}"></td>
+						<td th:if="${mark.value.averageMark >= 4.0}">Đạt</td>
+						<td th:if="${mark.value.averageMark < 4.0}">Không đạt</td>
+					</tr>
+
+					<tr th:if="${hasResult}">
+						<td colspan="3"><b>Điểm trung bình học kỳ hệ 4:</b></td>
+						<td colspan="10"
+							th:text="${#numbers.formatDecimal((gpaInSemester), 0, 'COMMA', 2, 'POINT' )}"></td>
+					</tr>
+					<tr th:if="${hasResult}">
+						<td colspan="3"><b>Điểm trung bình tích lũy (hệ 4):</b></td>
+						<td colspan="10"
+							th:text="${#numbers.formatDecimal((gpaTillNow), 0, 'COMMA', 2, 'POINT' )}"></td>
+					</tr>
+					<tr th:if="${hasResult}">
+						<td colspan="3"><b>Số tín chỉ đạt:</b></td>
+						<td colspan="10" th:text="${passedCredits}"></td>
+					</tr>
+					<tr th:if="${hasResult}">
+						<td colspan="3"><b>Số tín chỉ tích lũy:</b></td>
+						<td colspan="10" th:text="${passedCreditsTillNow}"></td>
+					</tr>
+
+				</tbody>
+			</table>
+
+
+		</div>
+
+		<div class="row">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4 text-center">
+				<a th:href="@{/student/viewAllMarks}"><strong>Xem tất
+						cả học kỳ</strong></a>
+			</div>
+			<div class="col-sm-4">
+				<br>
+				<br>
+			</div>
+		</div>
+
+	</div>
+	<div th:replace="common/header :: footer" />
+
+	<div th:replace="common/header :: body-bottom-scripts" />
+</body>
