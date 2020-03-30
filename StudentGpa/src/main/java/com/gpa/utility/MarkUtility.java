@@ -1,7 +1,7 @@
 package com.gpa.utility;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -46,7 +46,7 @@ public class MarkUtility {
 	}
 
 	public static List<Object> calculateMarkInSemester(String semesterName, List<StudentResult> studentResults) {
-		Map<Subject, StudentResult> marks = new HashMap<>();
+		Map<Subject, StudentResult> marks = new LinkedHashMap<>();
 
 		for (StudentResult s : studentResults) {
 			Subject subject = s.getStudentRegister().getCourse().getSubject();
@@ -86,7 +86,7 @@ public class MarkUtility {
 
 	public static List<Object> calculateMarkTillSemester(List<StudentResult> resultsTillSemester) {
 		/* Calculate gpa till the given semester */
-		Map<Subject, StudentResult> marksTillNow = new HashMap<>();
+		Map<Subject, StudentResult> marksTillNow = new LinkedHashMap<>();
 		for (StudentResult currentResult : resultsTillSemester) {
 
 			/* if the student studied again, check and choose the better result */
