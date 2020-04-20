@@ -34,25 +34,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/"
 	};
 	
-	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http
-			.authorizeRequests()
-			/*.antMatchers("/**")*/
-			.antMatchers(PUBLIC_MATCHERS).permitAll()
-			.antMatchers("/home").hasRole("STUDENT") // any public matchers can be accessed with no authenticating
-			.anyRequest().authenticated();
 		
-		http
-			.csrf().disable().cors().disable() // disable request csrf accessed by rest api
-			.formLogin().failureUrl("/login?error").defaultSuccessUrl("/")
-			.loginPage("/login").permitAll()
-			.and()
-			.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-			.logoutSuccessUrl("/?logout").deleteCookies("remember-me").permitAll()
-			.and()
-			.rememberMe();
+		http.authorizeRequests().antMatchers(PUBLIC_MATCHERS).permitAll().antMatchers("/home").hasRole("STUDENT").anyRequest().authenticated();
+
+		http.csrf().disable().cors().disable().formLogin().failureUrl("/login?error").defaultSuccessUrl("/")
+				.loginPage("/login").permitAll();
+
+		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/?logout")
+				.deleteCookies("JSESSIONID").permitAll(); 
+
+//		http.rememberMe().key("uniqueAndSecret").tokenValiditySeconds(24 * 60 * 60); 
 		
 	}
 	

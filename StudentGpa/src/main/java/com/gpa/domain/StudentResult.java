@@ -23,7 +23,7 @@ public class StudentResult {
 	
 	private String markToChar;
 	
-	private boolean pass;
+//	private boolean pass;
 	
 	@OneToOne
 	@JoinColumn(name = "student_register_id", nullable = false)
@@ -79,13 +79,13 @@ public class StudentResult {
 		this.markToChar = markToChar;
 	}
 
-	public boolean isPass() {
-		return pass;
-	}
-
-	public void setPass(boolean pass) {
-		this.pass = pass;
-	}
+//	public boolean isPass() {
+//		return pass;
+//	}
+//
+//	public void setPass(boolean pass) {
+//		this.pass = pass;
+//	}
 
 	public StudentRegister getStudentRegister() {
 		return studentRegister;
@@ -98,7 +98,7 @@ public class StudentResult {
 	@Override
 	public String toString() {
 		return "StudentResult [id=" + id + ", mark1=" + mark1 + ", mark2=" + mark2 + ", mark3=" + mark3
-				+ ", averageMark=" + averageMark + ", markToChar=" + markToChar + ", pass=" + pass
+				+ ", averageMark=" + averageMark + ", markToChar=" + markToChar 
 				+ ", studentRegister=" + studentRegister + "]";
 	}
 	

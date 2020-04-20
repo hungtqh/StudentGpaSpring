@@ -23,19 +23,6 @@
 
 <link rel="icon" th:href="@{/image/favicon.png}">
 
-<!-- Rich text tinymce api -->
-<script
-	src="https://cdn.tiny.cloud/1/xyan6igjxs77pu6l5zf2ymmxx786z779u3gerloia451o90c/tinymce/5/tinymce.min.js"
-	referrerpolicy="origin"></script>
-<script>
-	tinymce.init({
-		selector : 'textarea'
-	});
-</script>
-
-<!-- Data table -->
-<link th:href="@{/css/jquery.dataTables.min.css}" rel="stylesheet">
-<link th:href="@{/css/dataTables.bootstrap4.min.css}" rel="stylesheet">
 </head>
 
 <body>
@@ -79,30 +66,35 @@
 		</nav>
 	</div>
 	<!-- End of navbar -->
-	
+
 	<div th:fragment="footer" class="p-3 mb-2 bg-dark text-white">
-		<br />
-		<br />
+		<br /> <br />
 		<footer>
 			<div class="row">
 				<div class="col-sm-3 footerleft">
 					<div class="logofooter">
-						<a th:href="@{/}"><img class="img-fluid"
-							src="/image/logo.png" style="width: 200px;" /></a>
+						<a th:href="@{/}"><img class="img-fluid" src="/image/logo.png"
+							style="width: 200px;" /></a>
 					</div>
 				</div>
 				<div class="col-sm-3 paddingtop-bottom">
 					<h6 class="heading7">Liên hệ</h6>
 					<ul class="post">
-						<p>
-							<i class="fa fa-map-pin"></i> Nguyễn Trãi<br /> Hà Đông, Hà Nội
-						</p>
-						<p>
-							<i class="fa fa-phone"></i> Điện thoại (VN) : +0210 3556 442
-						</p>
-						<p>
-							<i class="fa fa-envelope"></i> E-mail : ptit@gmail.com
-						</p>
+						<li>
+							<p>
+								<i class="fa fa-map-pin"></i> Nguyễn Trãi<br /> Hà Đông, Hà Nội
+							</p>
+						</li>
+						<li>
+							<p>
+								<i class="fa fa-phone"></i> Điện thoại (VN) : +0210 3556 442
+							</p>
+						</li>
+						<li>
+							<p>
+								<i class="fa fa-envelope"></i> E-mail : ptit@gmail.com
+							</p>
+						</li>
 					</ul>
 				</div>
 				<div class="col-sm-3 paddingtop-bottom">
@@ -131,9 +123,6 @@
 		<script th:src="@{/js/jquery-3.2.1.slim.min.js}"></script>
 		<script th:src="@{/js/popper.min.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
-		<script th:src="@{/js/jquery.dataTables.min.js}"></script>
-		<script th:src="@{/js/dataTables.bootstrap4.min.js}"></script>
-
 	</div>
 </body>
 </html>
