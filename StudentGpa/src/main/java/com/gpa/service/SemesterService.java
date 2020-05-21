@@ -10,4 +10,6 @@ public interface SemesterService {
 
 	List<Semester> findAll();
 
+	Semester findBySemesterName(String semesterName);
+
 }

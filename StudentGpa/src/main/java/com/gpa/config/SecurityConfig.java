@@ -31,19 +31,20 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/js/**",
 			"/image/**",
 			"/login",
-			"/"
+			"/",
 	};
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		
-		http.authorizeRequests().antMatchers(PUBLIC_MATCHERS).permitAll().antMatchers("/home").hasRole("STUDENT").anyRequest().authenticated();
+		http.authorizeRequests().antMatchers(PUBLIC_MATCHERS).permitAll()
+		.antMatchers("/home").hasRole("STUDENT").anyRequest().authenticated();
 
 		http.csrf().disable().cors().disable().formLogin().failureUrl("/login?error").defaultSuccessUrl("/")
 				.loginPage("/login").permitAll();
 
-		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/?logout")
-				.deleteCookies("JSESSIONID").permitAll(); 
+		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
+				.deleteCookies("JSESSIONID");
 
 //		http.rememberMe().key("uniqueAndSecret").tokenValiditySeconds(24 * 60 * 60); 
 		

@@ -25,4 +25,9 @@ public class SemesterServiceImpl implements SemesterService {
 		return (List<Semester>) semesterRepository.findAll();
 	}
 
+	@Override
+	public Semester findBySemesterName(String semesterName) {
+		return semesterRepository.findByName(semesterName);
+	}
+
 }

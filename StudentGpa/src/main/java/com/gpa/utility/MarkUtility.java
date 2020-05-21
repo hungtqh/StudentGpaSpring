@@ -9,6 +9,9 @@ import com.gpa.domain.StudentResult;
 import com.gpa.domain.Subject;
 
 public class MarkUtility {
+	
+	public static List<List<Object>> listMarks = new ArrayList<>();;
+	
 	public static float markInGpa(String markByChar) {
 		float result = 0;
 		switch (markByChar) {

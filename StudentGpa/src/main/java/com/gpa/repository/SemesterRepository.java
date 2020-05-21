@@ -9,4 +9,6 @@ public interface SemesterRepository extends CrudRepository<Semester, Long> {
 
 	@Query("select s from Semester s where s.active = true")
 	Semester findCurrentSemester();
+
+	Semester findByName(String semesterName);
 }

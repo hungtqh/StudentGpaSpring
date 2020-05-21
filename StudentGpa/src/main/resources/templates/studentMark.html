@@ -43,13 +43,23 @@
 				<br> <br>
 			</div>
 		</div>
+		
+		<div class="row" th:if="!${hasResult}">
+			<div class="col-sm-4"></div>
+			<div class="col-sm-4 alert alert-danger text-center fade show" role="alert">
+				Học kỳ nhập vào không hợp lệ. Vui lòng thử lại!
+			</div>
+			<div class="col-sm-4">
+				<br> <br>
+			</div>
+		</div>
 
-		<div class="table-responsive">
+		<div class="table-responsive" th:if="${hasResult}">
 			<table id="bookListTable"
 				class="table table-bordered table-hover table-striped">
 				<thead>
 					<tr>
-						<td colspan="13"><p th:if="${hasResult}">
+						<td colspan="13"><p>
 								Học kỳ <span th:text="${semesterName}"></span>
 							</p></td>
 					</tr>
@@ -121,10 +131,15 @@
 			<div class="col-sm-4 text-center">
 				<a th:href="@{/student/viewAllMarks}"><strong>Xem tất
 						cả học kỳ</strong></a>
+
+				<hr>
+				<h3 th:if="${hasResult}">
+					<a class="btn btn-outline-success my-2 my-sm-0"
+						th:href="@{/student/download/studentMarks.xlsx}">IN ĐIỂM THI</a>
+				</h3>
 			</div>
 			<div class="col-sm-4">
-				<br>
-				<br>
+				<br> <br>
 			</div>
 		</div>
 
