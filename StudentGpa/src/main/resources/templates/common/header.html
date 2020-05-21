@@ -49,15 +49,8 @@
 					<li class="studentInfo" style="">Chào bạn <span
 						th:text="${student.name} + ' (' + ${student.code} + ')'"></span></li>
 
-					<!-- Dropdown -->
-					<li class="nav-item dropdown"><a
-						class="nav-link dropdown-toggle" href="#" id="navbarDropdown"
-						role="button" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false"> Xem thông tin </a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Xem chương trình đào tạo</a> <a
-								class="dropdown-item" href="#"> Xem thông tin cá nhân</a>
-						</div></li>
+					<li style="margin-right: 40px;"><a class="nav-link"
+						th:href="@{/}">Thay đổi mật khẩu</a></li>
 
 					<li style="margin-right: 40px;"><a class="nav-link"
 						th:href="@{/logout}">Thoát</a></li>
@@ -124,7 +117,9 @@
 		<script th:src="@{/js/popper.min.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
 		<script type="text/javascript">setTimeout(() => 
-			{ $(".alert").alert('close')}, 2000
+			{
+				document.querySelector(".alert").style.visibility = "hidden";
+			}, 2000
 		);</script>
 	</div>
 </body>
