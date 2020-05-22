@@ -21,7 +21,7 @@
 <!-- Custom styles for this template -->
 <link th:href="@{/css/style.css}" rel="stylesheet">
 
-<link rel="icon" th:href="@{/image/favicon.png}">
+<link rel="icon" th:href="@{/image/favicon.ico}">
 
 </head>
 
@@ -37,7 +37,7 @@
 			</button>
 			<a class="navbar-brand" th:href="@{/}">PTIT Student</a>
 
-			<div class="collapse navbar-collapse" id="navbar">
+			<div sec:authorize="isAuthenticated()" class="collapse navbar-collapse" id="navbar">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li style="margin: 0 50px;"><a class="nav-link"
 						th:href="@{/student/studentMark}">Xem điểm</a></li>
@@ -50,7 +50,7 @@
 						th:text="${student.name} + ' (' + ${student.code} + ')'"></span></li>
 
 					<li style="margin-right: 40px;"><a class="nav-link"
-						th:href="@{/}">Thay đổi mật khẩu</a></li>
+						th:href="@{/changePassword}">Thay đổi mật khẩu</a></li>
 
 					<li style="margin-right: 40px;"><a class="nav-link"
 						th:href="@{/logout}">Thoát</a></li>
@@ -116,11 +116,7 @@
 		<script th:src="@{/js/jquery-3.2.1.slim.min.js}"></script>
 		<script th:src="@{/js/popper.min.js}"></script>
 		<script th:src="@{/js/bootstrap.min.js}"></script>
-		<script type="text/javascript">setTimeout(() => 
-			{
-				document.querySelector(".alert").style.visibility = "hidden";
-			}, 2000
-		);</script>
+		<script th:src="@{/js/script.js}"></script>
 	</div>
 </body>
 </html>

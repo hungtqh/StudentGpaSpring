@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.gpa.service.impl.UserSecurityService;
+import com.gpa.service.UserSecurityService;
 import com.gpa.utility.SecurityUtility;
 
 @Configuration
@@ -31,7 +31,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			"/js/**",
 			"/image/**",
 			"/login",
-			"/",
+			"/forgetPassword",
+			"/",		
 	};
 	
 	@Override
@@ -46,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login?logout")
 				.deleteCookies("JSESSIONID");
 
-//		http.rememberMe().key("uniqueAndSecret").tokenValiditySeconds(24 * 60 * 60); 
+		http.rememberMe().key("uniqueAndSecret").tokenValiditySeconds(24 * 60 * 60); 
 		
 	}
 	

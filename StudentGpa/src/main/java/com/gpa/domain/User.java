@@ -23,6 +23,11 @@ import com.gpa.domain.security.UserRole;
 @Entity
 public class User implements UserDetails {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -38,6 +43,9 @@ public class User implements UserDetails {
 
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<UserRole> userRoles = new HashSet<>();
+	
+	@OneToOne(mappedBy = "user")
+	private PasswordResetToken passwordResetToken;
 
 	public Long getId() {
 		return id;

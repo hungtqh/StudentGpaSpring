@@ -43,6 +43,7 @@ public class StudentController {
 	@GetMapping("/studentMark")
 	public String studentMarkCurrentSemester(Model model, Principal principal) {
 		Semester currentSemester = semesterService.findCurrentSemester();
+		
 		return viewMark(currentSemester.getName(), model, principal);
 
 	}
@@ -50,15 +51,18 @@ public class StudentController {
 	@PostMapping("/studentMark")
 	public String studentMarkInSemester(@ModelAttribute("semesterName") String semesterName, Model model,
 			Principal principal) {
+		
 		return viewMark(semesterName, model, principal);
 	}
 
-	@GetMapping("/viewAllMarks")
+	@GetMapping("/studentAllMarks")
 	public String viewMarkAllSemester(Model model, Principal principal) {
 		User user = userService.findByUsername(principal.getName());
 
 		Student student = user.getStudent();
 		model.addAttribute("student", student);
+		model.addAttribute("classActiveAllMarks", true);
+		model.addAttribute("classActiveMark", false);
 
 		// find all semesters name
 		List<Semester> semesters = semesterService.findAll();
@@ -93,7 +97,7 @@ public class StudentController {
 
 		model.addAttribute("listMarks", MarkUtility.listMarks);
 
-		return "studentAllMark";
+		return "studentMark";
 	}
 
 	public String viewMark(String semesterName, Model model, Principal principal) {
@@ -101,6 +105,8 @@ public class StudentController {
 
 		Student student = user.getStudent();
 		model.addAttribute("student", student);
+		model.addAttribute("classActiveAllMarks", false);
+		model.addAttribute("classActiveMark", true);
 
 		List<StudentResult> studentResults = resultService.findResultInSemester(student.getId(), semesterName);
 
