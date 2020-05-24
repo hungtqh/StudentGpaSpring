@@ -7,7 +7,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 @Entity
@@ -25,9 +26,12 @@ public class Subject implements Comparable<Subject> {
 	private float mark2Percent;
 	private float mark3Percent;
 	
-	@ManyToOne
-	@JoinColumn(name = "major_id", nullable = false)
-	private Major major;
+	@ManyToMany
+	@JoinTable(
+			  name = "major_subject", 
+			  joinColumns = @JoinColumn(name = "subject_id"), 
+			  inverseJoinColumns = @JoinColumn(name = "major_id"))
+	private List<Major> majors;
 	
 	@OneToMany(mappedBy = "subject")
 	private List<Course> courses;
@@ -88,12 +92,12 @@ public class Subject implements Comparable<Subject> {
 		this.mark3Percent = mark3Percent;
 	}
 
-	public Major getMajor() {
-		return major;
+	public List<Major> getMajors() {
+		return majors;
 	}
 
-	public void setMajor(Major major) {
-		this.major = major;
+	public void setMajors(List<Major> majors) {
+		this.majors = majors;
 	}
 
 	public List<Course> getCourses() {
