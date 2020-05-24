@@ -3,7 +3,6 @@ package com.gpa.domain;
 import java.util.List;
 
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -34,7 +33,7 @@ public class Student {
 	@ManyToOne
 	@JoinColumn(name = "student_class_id", nullable = false)
 	private StudentClass studentClass;
-	
+
 	@OneToMany(mappedBy = "student")
 	private List<StudentRegister> studentRegisters;
 
@@ -93,6 +92,5 @@ public class Student {
 	public void setStudentRegisters(List<StudentRegister> studentRegisters) {
 		this.studentRegisters = studentRegisters;
 	}
-	
-	
+
 }

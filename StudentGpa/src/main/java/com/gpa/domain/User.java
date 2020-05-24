@@ -44,8 +44,8 @@ public class User implements UserDetails {
 	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Set<UserRole> userRoles = new HashSet<>();
 	
-	@OneToOne(mappedBy = "user")
-	private PasswordResetToken passwordResetToken;
+	@OneToMany(mappedBy = "user")
+	private Set<PasswordResetToken> passwordResetTokens = new HashSet<>();
 
 	public Long getId() {
 		return id;

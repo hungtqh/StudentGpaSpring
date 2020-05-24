@@ -14,10 +14,10 @@ function checkPasswordMatch() {
 		$("#checkPasswordMatch").html("");
 		$("#updateUserInfoButton").prop('disabled', true);
 	} else if(newPassword == confirmPassword && password != "") {
-			$("#checkPasswordMatch").html("Passwords match!");
+			$("#checkPasswordMatch").html("Khớp mật khẩu!");
 			$("#updateUserInfoButton").prop('disabled', false);
 	} else {
-			$("#checkPasswordMatch").html("Passwords do not match");
+			$("#checkPasswordMatch").html("Mật khẩu không trùng khớp!");
 			$("#updateUserInfoButton").prop('disabled', true);
 	}
 }

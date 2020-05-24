@@ -9,7 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class PasswordResetToken {
@@ -22,7 +22,7 @@ public class PasswordResetToken {
 	
 	private String token;
 	
-	@OneToOne(fetch = FetchType.EAGER) // uni directional
+	@ManyToOne(fetch = FetchType.EAGER) 
 	@JoinColumn(nullable=false, name="user_id")
 	private User user;
 	

@@ -32,8 +32,6 @@ import com.gpa.utility.SecurityUtility;
 @Controller
 public class HomeController {
 	
-	
-	
 	@Autowired
 	private UserService userService;
 	
