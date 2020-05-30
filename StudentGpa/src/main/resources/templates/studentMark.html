@@ -31,7 +31,7 @@
 			<div class="col-sm-6">
 
 				<form class="form-inline my-2 my-lg-0"
-					th:action="@{/student/studentMark}" method="post">
+					th:action="@{/studentMark}" method="post">
 					<label for="semesterName">Nhập học kỳ:(vd: 20191)
 						&nbsp;&nbsp;&nbsp;</label> <input class="form-control mr-sm-2" type="text"
 						placeholder="Học kỳ" aria-label="Xem điểm" name="semesterName"
@@ -200,13 +200,13 @@
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4 text-center">
-				<a th:if="${classActiveMark}" th:href="@{/student/studentAllMarks}"><strong>Xem tất
+				<a th:if="${classActiveMark}" th:href="@{/studentAllMarks}"><strong>Xem tất
 						cả học kỳ</strong></a>
-				<a th:if="${classActiveAllMarks}" th:href="@{/student/studentMark}"><strong>Xem học kỳ hiện tại</strong></a>
+				<a th:if="${classActiveAllMarks}" th:href="@{/studentMark}"><strong>Xem học kỳ hiện tại</strong></a>
 				<hr>
 				<h3 th:if="${hasResult} or ${classActiveAllMarks}">
 					<a class="btn btn-outline-success my-2 my-sm-0"
-						th:href="@{/student/download/studentMarks.xlsx}">IN ĐIỂM THI</a>
+						th:href="@{/download/studentMarks.xlsx}">IN ĐIỂM THI</a>
 				</h3>
 			</div>
 			<div class="col-sm-4">

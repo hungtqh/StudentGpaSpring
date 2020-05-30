@@ -27,43 +27,48 @@ import com.gpa.domain.User;
 import com.gpa.service.UserSecurityService;
 import com.gpa.service.UserService;
 import com.gpa.utility.MailConstructor;
+import com.gpa.utility.MarkUtility;
 import com.gpa.utility.SecurityUtility;
 
 @Controller
 public class HomeController {
-	
+
 	@Autowired
 	private UserService userService;
-	
+
 	@Autowired
 	private UserSecurityService userSecurityService;
-	
+
 	@Autowired
 	private MailConstructor mailConstructor;
-	
+
 	@Autowired
 	private JavaMailSender mailSender;
-	
+
 	@GetMapping("/home")
 	public String home(Principal principal, Model model) {
 		User user = userService.findByUsername(principal.getName());
-		
+
 		Student student = user.getStudent();
-		
+
 		model.addAttribute("student", student);
-		
+
 		return "home";
 	}
-	
+
 	@GetMapping("/")
 	public String index() {
 		return "redirect:/home";
 	}
-	
+
 	@GetMapping("/login")
-	public String showLogin(Model model) {
+	public String showLogin(Model model, @RequestParam(required = false, value = "logout") String logoutState) {
 		model.addAttribute("classActiveLogin", true);
-		
+
+		if (logoutState != null) {
+			MarkUtility.listMarks.clear();
+		}
+
 		return "login";
 	}
 
@@ -100,21 +105,21 @@ public class HomeController {
 
 		return "login";
 	}
-	
+
 	@GetMapping("/changePassword")
 	public String showChangePassword(Model model, Principal principal) {
-		
+
 		User user = userService.findByUsername(principal.getName());
-		
+
 		Student student = user.getStudent();
-		
+
 		model.addAttribute("user", user);
 		model.addAttribute("student", student);
 		model.addAttribute("classActiveEdit", true);
-		
+
 		return "home";
 	}
-	
+
 	@GetMapping("/forgetPassword")
 	public String newUser(Model model, Locale locale, @RequestParam("token") String token) {
 
@@ -139,19 +144,19 @@ public class HomeController {
 		SecurityContextHolder.getContext().setAuthentication(authentication);
 
 		Student student = user.getStudent();
-		
+
 		model.addAttribute("student", student);
 		model.addAttribute("user", user);
-		
+
 		model.addAttribute("classActiveEdit", true);
-		
+
 		return "home";
 	}
-	
+
 	@PostMapping("/updateStudentInfo")
-	public String updateUserInfo(@ModelAttribute("user") User user,
-			@ModelAttribute("newPassword") String newPassword, Model model) throws Exception {
-		
+	public String updateUserInfo(@ModelAttribute("user") User user, @ModelAttribute("newPassword") String newPassword,
+			Model model) throws Exception {
+
 		User currentUser = userService.findbyId(user.getId());
 
 		if (currentUser == null) {
@@ -162,7 +167,7 @@ public class HomeController {
 		if (newPassword != null && !newPassword.isEmpty()) {
 			BCryptPasswordEncoder passwordEncoder = SecurityUtility.passwordEncoder();
 			String dbPassword = currentUser.getPassword();
-			
+
 			// inputed old password is correct
 			if (passwordEncoder.matches(user.getPassword(), dbPassword)) { // (rawPassword, encodedPassword)
 				// the new password is the same as the old password
@@ -181,7 +186,7 @@ public class HomeController {
 				return "home";
 			}
 		}
-		
+
 		userService.save(currentUser);
 
 		model.addAttribute("student", currentUser.getStudent());

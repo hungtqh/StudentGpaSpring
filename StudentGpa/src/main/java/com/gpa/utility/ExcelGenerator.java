@@ -120,16 +120,18 @@ public class ExcelGenerator {
 				sheet.createRow(rowIdx++);
 				
 				row = sheet.createRow(rowIdx++);
-				row.createCell(4).setCellValue("Điểm trung bình học kỳ hệ 4: " + semester.get(2));
+				row.createCell(4).setCellValue("Điểm trung bình học kỳ hệ 4: " + 
+												String.format("%.2f", (float) semester.get(2)));
 				
 				row = sheet.createRow(rowIdx++);
-				row.createCell(4).setCellValue("Điểm trung bình tích lũy (hệ 4): " + semester.get(4));
+				row.createCell(4).setCellValue("Điểm trung bình tích lũy (hệ 4): " + 
+												String.format("%.2f", (float) semester.get(5)));
 				
 				row = sheet.createRow(rowIdx++);
 				row.createCell(4).setCellValue("Số tín chỉ đạt: " + semester.get(3));
 				
 				row = sheet.createRow(rowIdx++);
-				row.createCell(4).setCellValue("Số tín chỉ tích lũy: " + semester.get(5));
+				row.createCell(4).setCellValue("Số tín chỉ tích lũy: " + semester.get(4));
 				
 				sheet.createRow(rowIdx++);
 				sheet.createRow(rowIdx++);

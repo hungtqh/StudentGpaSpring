@@ -1,13 +1,15 @@
-package com.adminportal;
+package com.gpa;
 
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
+
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class AdminPortalApplicationTests {
+class StudentGpaTests {
 
 	@Test
 	void contextLoads() {
+		
 	}
-
 }

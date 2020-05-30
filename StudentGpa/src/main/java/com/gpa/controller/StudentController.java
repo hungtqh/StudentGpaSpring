@@ -27,7 +27,6 @@ import com.gpa.utility.ExcelGenerator;
 import com.gpa.utility.MarkUtility;
 
 @Controller
-@RequestMapping("/student")
 public class StudentController {
 
 	@Autowired
@@ -137,6 +136,10 @@ public class StudentController {
 	@GetMapping("/download/studentMarks.xlsx")
 	public ResponseEntity<InputStreamResource> excelMarksReport(Principal principal) throws IOException {
 
+		if (MarkUtility.listMarks.size() == 0) {
+			return null;
+		}
+		
 		User user = userService.findByUsername(principal.getName());
 
 		Student student = user.getStudent();

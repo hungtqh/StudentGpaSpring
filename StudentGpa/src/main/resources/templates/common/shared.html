@@ -40,7 +40,7 @@
 			<div sec:authorize="isAuthenticated()" class="collapse navbar-collapse" id="navbar">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li style="margin: 0 50px;"><a class="nav-link"
-						th:href="@{/student/studentMark}">Xem điểm</a></li>
+						th:href="@{/studentMark}">Xem điểm</a></li>
 
 				</ul>
 
@@ -66,7 +66,7 @@
 			<div class="row">
 				<div class="col-sm-3 footerleft">
 					<div class="logofooter">
-						<a th:href="@{/}"><img class="img-fluid" src="/image/logo.png"
+						<a th:href="@{/}"><img class="img-fluid" th:src="@{/image/logo.png}"
 							style="width: 200px;" /></a>
 					</div>
 				</div>
