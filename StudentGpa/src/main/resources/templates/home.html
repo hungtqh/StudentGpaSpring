@@ -31,10 +31,6 @@
 									<div class="alert alert-danger" th:if="${incorrectPassword}">
 										<strong>Mật khẩu cũ không đúng!</strong>
 									</div>
-									
-									<div class="alert alert-danger" th:if="${samePassword}">
-										<strong>Mật khẩu mới không được giống mật khẩu cũ!</strong>
-									</div>
 
 									<div class="alert alert-success" th:if="${updateSuccess}">
 										<strong>Cập nhật thành công!</strong>
@@ -44,21 +40,20 @@
 										<input type="hidden" name="id" th:value="${user.id}">
 
 										<div class="form-group">
-											<label for="password">Mật khẩu hiện tại</label> <input
+											<label for="password">* Mật khẩu hiện tại</label> <input
 												type="password" class="form-control" id="password"
 												name="password">
 										</div>
 
 
 										<div class="form-group">
-											<label for="newPassword">Mật khẩu mới</label> &nbsp; <span
-												id="checkPasswordMatch" style="color: red;"></span> <input
+											<label for="newPassword">* Mật khẩu mới</label> <input
 												type="password" class="form-control" id="newPassword"
 												name="newPassword">
 										</div>
-
+										<div id="checkPasswordMatch" style="color: red;"></div>
 										<div class="form-group">
-											<label for="confirmPassword">Nhập lại mật khẩu mới</label>
+											<label for="confirmPassword">* Nhập lại mật khẩu mới</label>
 											<input type="password" class="form-control"
 												id="confirmPassword">
 										</div>

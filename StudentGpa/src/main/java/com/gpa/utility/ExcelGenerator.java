@@ -100,9 +100,9 @@ public class ExcelGenerator {
 					row.createCell(col++).setCellValue(subject.getCode());
 					row.createCell(col++).setCellValue(subject.getName());
 					row.createCell(col++).setCellValue(subject.getNumberOfCredits());
-					row.createCell(col++).setCellValue(subject.getMark1Percent());
-					row.createCell(col++).setCellValue(subject.getMark2Percent());
-					row.createCell(col++).setCellValue(subject.getMark3Percent());
+					row.createCell(col++).setCellValue(subject.getMark1Percent()*100);
+					row.createCell(col++).setCellValue(subject.getMark2Percent()*100);
+					row.createCell(col++).setCellValue(subject.getMark3Percent()*100);
 					row.createCell(col++).setCellValue(studentResult.getMark1());
 					row.createCell(col++).setCellValue(studentResult.getMark2());
 					row.createCell(col++).setCellValue(studentResult.getMark3());

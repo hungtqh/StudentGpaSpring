@@ -126,7 +126,7 @@ public class HomeController {
 		PasswordResetToken passToken = userService.getPasswordResetToken(token);
 
 		if (passToken == null) {
-			String message = "Token không hợp lệ.";
+			String message = "Invalid token.";
 			model.addAttribute("message", message);
 			return "redirect:/badRequest";
 		}
@@ -170,15 +170,7 @@ public class HomeController {
 
 			// inputed old password is correct
 			if (passwordEncoder.matches(user.getPassword(), dbPassword)) { // (rawPassword, encodedPassword)
-				// the new password is the same as the old password
-				if (passwordEncoder.matches(newPassword, dbPassword)) {
-					model.addAttribute("student", currentUser.getStudent());
-					model.addAttribute("samePassword", true);
-					model.addAttribute("classActiveEdit", true);
-					return "home";
-				} else {
-					currentUser.setPassword(passwordEncoder.encode(newPassword));
-				}
+				currentUser.setPassword(passwordEncoder.encode(newPassword));
 			} else {
 				model.addAttribute("student", currentUser.getStudent());
 				model.addAttribute("incorrectPassword", true);
