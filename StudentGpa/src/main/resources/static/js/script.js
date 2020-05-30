@@ -1,8 +1,10 @@
 function alertFadeOut() {
-	setTimeout(() => {
-		document.querySelector(".alert").style.visibility = "hidden";
-		}, 2000
-	);
+	if (document.querySelector(".alert") != null) {
+		setTimeout(() => {
+			document.querySelector(".alert").style.visibility = "hidden";
+			}, 2000
+		);
+	}
 }
 
 function checkPasswordMatch() {

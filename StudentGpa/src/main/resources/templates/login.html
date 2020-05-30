@@ -11,11 +11,11 @@
 				<!-- Nav tabs -->
 				<ul class="nav nav-tabs">
 
-					<li class="nav-item"><a
+					<li class="nav-item" id="tab2"><a
 						th:classappend="${classActiveLogin} ? 'active'" class="nav-link"
 						href="#tab-2" data-toggle="tab"><span style="color: red;">Đăng
 								nhập</span></a></li>
-					<li class="nav-item"><a
+					<li class="nav-item" id="tab3"><a
 						th:classappend="${classActiveForgetPassword} ? 'active'"
 						class="nav-link" href="#tab-3" data-toggle="tab"><span
 							style="color: red;">Quên mật khẩu</span></a></li>
@@ -101,5 +101,14 @@
 	</div>
 	<div th:replace="common/shared :: footer" />
 	<div th:replace="common/shared :: body-bottom-scripts" />
+
+	<script type="text/javascript">
+		$("#username").focus();
+		
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+			$("#username").focus();
+			  $("#recoverEmail").focus();
+		});
+	</script>
 </body>
 </html>
