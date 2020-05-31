@@ -8,13 +8,13 @@ function alertFadeOut() {
 }
 
 function checkPasswordMatch() {
+
 	let password = $("#password").val();
 	let newPassword = $("#newPassword").val();
 	let confirmPassword = $("#confirmPassword").val();
 	
 	if(password == "" || newPassword == "" || confirmPassword == "") {
 		$("#checkPasswordMatch").html("");
-		$("#updateUserInfoButton").prop('disabled', true);
 	} else if(newPassword == confirmPassword && password != "") {
 		$("#checkPasswordMatch").html("Khớp mật khẩu!");
 		$("#checkPasswordMatch").css("color", "green");

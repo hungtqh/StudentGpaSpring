@@ -41,7 +41,7 @@
 
 									<form th:action="@{/login}" method="post">
 										<div class="form-group">
-											<label for="username">* Tên tài khoản</label> <input
+											<label for="username">* Tên tài khoản: </label> <input
 												required="required" type="text" class="form-control"
 												id="username" name="username">
 										</div>
@@ -104,10 +104,10 @@
 
 	<script type="text/javascript">
 		$("#username").focus();
-		
-		$('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+
+		$('a[data-toggle="tab"]').on('shown.bs.tab', function(e) {
 			$("#username").focus();
-			  $("#recoverEmail").focus();
+			$("#recoverEmail").focus();
 		});
 	</script>
 </body>
