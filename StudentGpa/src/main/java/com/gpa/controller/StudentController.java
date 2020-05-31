@@ -134,10 +134,10 @@ public class StudentController {
 	}
 
 	@GetMapping("/download/studentMarks.xlsx")
-	public ResponseEntity<InputStreamResource> excelMarksReport(Principal principal) throws IOException {
+	public Object excelMarksReport(Principal principal) throws IOException {
 
 		if (MarkUtility.listMarks.size() == 0) {
-			return null;
+			return "redirect:/home";
 		}
 		
 		User user = userService.findByUsername(principal.getName());
