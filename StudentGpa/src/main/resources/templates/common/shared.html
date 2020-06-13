@@ -7,7 +7,7 @@
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">
 
-<title>Student GPA PTIT</title>
+<title>Học viện Công nghệ Bưu chính Viễn thông</title>
 
 <link rel="canonical"
 	href="https://getbootstrap.com/docs/4.0/examples/navbars/">
@@ -35,9 +35,10 @@
 				aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			<a class="navbar-brand" th:href="@{/}">PTIT Student</a>
+			<a class="navbar-brand ml-3" th:href="@{/}"><strong>PTIT</strong></a>
 
-			<div sec:authorize="isAuthenticated()" class="collapse navbar-collapse" id="navbar">
+			<div sec:authorize="isAuthenticated()"
+				class="collapse navbar-collapse" id="navbar">
 				<ul class="navbar-nav mr-auto mt-2 mt-lg-0">
 					<li style="margin: 0 50px;"><a class="nav-link"
 						th:href="@{/studentMark}">Xem điểm</a></li>
@@ -66,11 +67,21 @@
 			<div class="row">
 				<div class="col-sm-3 footerleft">
 					<div class="logofooter">
-						<a th:href="@{/}"><img class="img-fluid" th:src="@{/image/logo.png}"
-							style="width: 200px;" /></a>
+						<a th:href="@{/}"><img class="img-fluid"
+							th:src="@{/image/logo.png}" style="width: 200px;" /></a>
 					</div>
 				</div>
-				<div class="col-sm-3 paddingtop-bottom">
+
+				<div class="col-sm-2 paddingtop-bottom">
+					<!-- <h6 class="heading7">Liên kết</h6>
+					<ul class="footer-ul">
+						<li><a href="#"> Thông tin cá nhân</a></li>
+						<li><a href="#"> Nghiên cứu khoa học</a></li>
+						<li><a href="#"> Câu hỏi thường gặp</a></li>
+					</ul> -->
+				</div>
+
+				<div class="col-sm-4 paddingtop-bottom">
 					<h6 class="heading7">Liên hệ</h6>
 					<ul class="post">
 						<li>
@@ -80,7 +91,7 @@
 						</li>
 						<li>
 							<p>
-								<i class="fa fa-phone"></i> Điện thoại (VN) : +0210 3556 442
+								<i class="fa fa-phone"></i> Điện thoại: 0210 3556 442
 							</p>
 						</li>
 						<li>
@@ -90,19 +101,15 @@
 						</li>
 					</ul>
 				</div>
-				<div class="col-sm-3 paddingtop-bottom">
-					<h6 class="heading7">Liên kết</h6>
-					<ul class="footer-ul">
-						<li><a href="#"> Thông tin cá nhân</a></li>
-						<li><a href="#"> Nghiên cứu khoa học</a></li>
-						<li><a href="#"> Câu hỏi thường gặp</a></li>
-					</ul>
-				</div>
+
 				<div class="col-sm-3 paddingtop-bottom">
 					<h6 class="heading7">Giờ làm việc</h6>
 					<div class="post">
-						<p>Thứ 2 - Thứ 7: 9am - 11pm</p>
-						<p>Chủ nhật: 10am - 10pm</p>
+						<ul>
+							<li><p>Thứ 2 - Thứ 7: 9SA- 11CH</p></li>
+							<li><p>Chủ nhật: 10SA - 10CH</p></li>
+						</ul>
+
 					</div>
 				</div>
 			</div>

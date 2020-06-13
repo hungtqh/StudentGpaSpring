@@ -81,21 +81,21 @@
 				</thead>
 				<tbody>
 					<tr data-th-each="mark, status : ${marks}">
-						<td th:text="${status.index + 1}"></td>
+						<td class="text-right" th:text="${status.index + 1}"></td>
 						<td th:text="${mark.key.code}"></td>
 						<td th:text="${mark.key.name}"></td>
-						<td th:text="${mark.key.numberOfCredits}"></td>
-						<td
+						<td class="text-right" th:text="${mark.key.numberOfCredits}"></td>
+						<td class="text-right"
 							th:text="${#numbers.formatDecimal((mark.key.mark1Percent*100), 0, 'COMMA', 0, 'POINT' )}"></td>
-						<td
+						<td class="text-right"
 							th:text="${#numbers.formatDecimal((mark.key.mark2Percent*100), 0, 'COMMA', 0, 'POINT' )}"></td>
-						<td
+						<td class="text-right"
 							th:text="${#numbers.formatDecimal((mark.key.mark3Percent*100), 0, 'COMMA', 0, 'POINT' )}"></td>
 
-						<td th:text="${mark.value.mark1}"></td>
-						<td th:text="${mark.value.mark2}"></td>
-						<td th:text="${mark.value.mark3}"></td>
-						<td th:text="${mark.value.averageMark}"></td>
+						<td class="text-right" th:text="${mark.value.mark1}"></td>
+						<td class="text-right" th:text="${mark.value.mark2}"></td>
+						<td class="text-right" th:text="${mark.value.mark3}"></td>
+						<td class="text-right" th:text="${mark.value.averageMark}"></td>
 						<td th:text="${mark.value.markToChar}"></td>
 						<td th:if="${mark.value.averageMark >= 4.0}">Đạt</td>
 						<td th:if="${mark.value.averageMark < 4.0}">Không đạt</td>
@@ -153,21 +153,21 @@
 				</thead>
 				<tbody>
 					<tr data-th-each="mark, status : ${listResult[1]}">
-						<td th:text="${status.index + 1}"></td>
+						<td class="text-right" th:text="${status.index + 1}"></td>
 						<td th:text="${mark.key.code}"></td>
 						<td th:text="${mark.key.name}"></td>
-						<td th:text="${mark.key.numberOfCredits}"></td>
-						<td
+						<td class="text-right" th:text="${mark.key.numberOfCredits}"></td>
+						<td class="text-right"
 							th:text="${#numbers.formatDecimal((mark.key.mark1Percent*100), 0, 'COMMA', 0, 'POINT' )}"></td>
-						<td
+						<td class="text-right"
 							th:text="${#numbers.formatDecimal((mark.key.mark2Percent*100), 0, 'COMMA', 0, 'POINT' )}"></td>
-						<td
+						<td class="text-right"
 							th:text="${#numbers.formatDecimal((mark.key.mark3Percent*100), 0, 'COMMA', 0, 'POINT' )}"></td>
 
-						<td th:text="${mark.value.mark1}"></td>
-						<td th:text="${mark.value.mark2}"></td>
-						<td th:text="${mark.value.mark3}"></td>
-						<td th:text="${mark.value.averageMark}"></td>
+						<td class="text-right" th:text="${mark.value.mark1}"></td>
+						<td class="text-right" th:text="${mark.value.mark2}"></td>
+						<td class="text-right" th:text="${mark.value.mark3}"></td>
+						<td class="text-right" th:text="${mark.value.averageMark}"></td>
 						<td th:text="${mark.value.markToChar}"></td>
 						<td th:if="${mark.value.averageMark >= 4.0}">Đạt</td>
 						<td th:if="${mark.value.averageMark < 4.0}">Không đạt</td>
