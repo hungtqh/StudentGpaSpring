@@ -22,6 +22,12 @@ public class Student {
 
 	private String name;
 
+	private String gender;
+
+	private String dateOfBirth;
+
+	private String placeOfBirth;
+
 	@ManyToOne
 	@JoinColumn(name = "major_id", nullable = false)
 	private Major major;
@@ -63,6 +69,30 @@ public class Student {
 
 	public Major getMajor() {
 		return major;
+	}
+
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public String getPlaceOfBirth() {
+		return placeOfBirth;
+	}
+
+	public void setPlaceOfBirth(String placeOfBirth) {
+		this.placeOfBirth = placeOfBirth;
 	}
 
 	public void setMajor(Major major) {

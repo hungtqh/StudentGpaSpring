@@ -16,6 +16,15 @@
 						<strong>Tên sinh viên: </strong><span th:text="${student.name}"></span>
 					</p>
 					<p class="card-text">
+						<strong>Giới tính: </strong><span th:text="${student.gender}"></span>
+					</p>
+					<p class="card-text">
+						<strong>Ngày sinh: </strong><span th:text="${student.dateOfBirth}"></span>
+					</p>
+					<p class="card-text">
+						<strong>Quê quán: </strong><span th:text="${student.placeOfBirth}"></span>
+					</p>
+					<p class="card-text">
 						<strong>Lớp: </strong><span th:text="${student.studentClass.name}"></span>
 					</p>
 					<p class="card-text">
@@ -30,8 +39,8 @@
 			<div class="col-sm-3"></div>
 			<div class="col-sm-6">
 
-				<form class="form-inline my-2 my-lg-0"
-					th:action="@{/studentMark}" method="post">
+				<form class="form-inline my-2 my-lg-0" th:action="@{/studentMark}"
+					method="post">
 					<label for="semesterName">Nhập học kỳ:(vd: 20191)
 						&nbsp;&nbsp;&nbsp;</label> <input class="form-control mr-sm-2" type="text"
 						placeholder="Học kỳ" aria-label="Xem điểm" name="semesterName"
@@ -43,25 +52,26 @@
 				<br> <br>
 			</div>
 		</div>
-		
+
 		<div class="row" th:if="!${hasResult} and ${classActiveMark}">
 			<div class="col-sm-4"></div>
-			<div class="col-sm-4 alert alert-danger text-center fade show" role="alert">
-				Học kỳ nhập vào không hợp lệ hoặc không tồn tại. Vui lòng thử lại!
-			</div>
+			<div class="col-sm-4 alert alert-danger text-center fade show"
+				role="alert">Học kỳ nhập vào không hợp lệ hoặc không tồn tại.
+				Vui lòng thử lại!</div>
 			<div class="col-sm-4">
 				<br> <br>
 			</div>
 		</div>
 
-		<div th:if="${classActiveMark} and ${hasResult}" class="table-responsive">
+		<div th:if="${classActiveMark} and ${hasResult}"
+			class="table-responsive">
 			<table id="bookListTable"
 				class="table table-bordered table-hover table-striped">
 				<thead class="thead-dark">
 					<tr>
-						<td colspan="13"><strong>
-								Học kỳ <span th:text="${semesterName}"></span>
-							</strong></td>
+						<td colspan="13"><strong> Học kỳ <span
+								th:text="${semesterName}"></span>
+						</strong></td>
 					</tr>
 					<tr>
 						<th>STT</th>
@@ -125,15 +135,16 @@
 
 
 		</div>
-		
-		<div th:if="${classActiveAllMarks}" class="table-responsive" data-th-each="listResult, status : ${listMarks}">
+
+		<div th:if="${classActiveAllMarks}" class="table-responsive"
+			data-th-each="listResult, status : ${listMarks}">
 			<table id="bookListTable"
 				class="table table-bordered table-hover table-striped">
 				<thead class="thead-dark">
 					<tr>
-						<td colspan="13"><strong>
-								Học kỳ <span th:text="${listResult[0]}"></span>
-							</strong></td>
+						<td colspan="13"><strong> Học kỳ <span
+								th:text="${listResult[0]}"></span>
+						</strong></td>
 					</tr>
 					<tr>
 						<th>STT</th>
@@ -175,11 +186,13 @@
 
 					<tr>
 						<td colspan="3"><b>Điểm trung bình học kỳ hệ 4:</b></td>
-						<td colspan="10" th:text="${#numbers.formatDecimal((listResult[2]), 1, 'COMMA', 2, 'POINT' )}"></td>
+						<td colspan="10"
+							th:text="${#numbers.formatDecimal((listResult[2]), 1, 'COMMA', 2, 'POINT' )}"></td>
 					</tr>
 					<tr>
 						<td colspan="3"><b>Điểm trung bình tích lũy (hệ 4):</b></td>
-						<td colspan="10" th:text="${#numbers.formatDecimal((listResult[5]), 1, 'COMMA', 2, 'POINT' )}"></td>
+						<td colspan="10"
+							th:text="${#numbers.formatDecimal((listResult[5]), 1, 'COMMA', 2, 'POINT' )}"></td>
 					</tr>
 					<tr>
 						<td colspan="3"><b>Số tín chỉ đạt:</b></td>
@@ -195,14 +208,14 @@
 
 
 		</div>
-		
+
 
 		<div class="row">
 			<div class="col-sm-4"></div>
 			<div class="col-sm-4 text-center">
-				<a th:if="${classActiveMark}" th:href="@{/studentAllMarks}"><strong>Xem tất
-						cả học kỳ</strong></a>
-				<a th:if="${classActiveAllMarks}" th:href="@{/studentMark}"><strong>Xem học kỳ hiện tại</strong></a>
+				<a th:if="${classActiveMark}" th:href="@{/studentAllMarks}"><strong>Xem
+						tất cả học kỳ</strong></a> <a th:if="${classActiveAllMarks}"
+					th:href="@{/studentMark}"><strong>Xem học kỳ hiện tại</strong></a>
 				<hr>
 				<h3 th:if="${hasResult} or ${classActiveAllMarks}">
 					<a class="btn btn-outline-success my-2 my-sm-0"
@@ -218,7 +231,7 @@
 	<div th:replace="common/shared :: footer" />
 
 	<div th:replace="common/shared :: body-bottom-scripts" />
-	
+
 	<script type="text/javascript">
 		$("#semesterName").focus();
 	</script>
