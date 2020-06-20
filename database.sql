@@ -63,7 +63,7 @@ CREATE TABLE `hibernate_sequence` (
 
 LOCK TABLES `hibernate_sequence` WRITE;
 /*!40000 ALTER TABLE `hibernate_sequence` DISABLE KEYS */;
-INSERT INTO `hibernate_sequence` VALUES (9),(9),(9),(9),(9),(9),(9),(9),(9),(9),(9),(9);
+INSERT INTO `hibernate_sequence` VALUES (48),(48),(48),(48),(48),(48),(48),(48),(48),(48),(48),(48);
 /*!40000 ALTER TABLE `hibernate_sequence` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -142,7 +142,7 @@ CREATE TABLE `password_reset_token` (
 
 LOCK TABLES `password_reset_token` WRITE;
 /*!40000 ALTER TABLE `password_reset_token` DISABLE KEYS */;
-INSERT INTO `password_reset_token` VALUES (5,'2020-05-31 17:32:17','7289ccda-10cb-4491-8a9b-58b6371cb95b',2),(6,'2020-06-01 22:01:29','1543cfff-0ea2-43e7-9108-6b6414937f36',2),(7,'2020-06-02 18:45:53','06255a6a-4332-40ff-91f4-8eba46214a36',29),(8,'2020-06-14 17:14:36','856c6291-c60d-4846-a594-3e5e5abeba9d',2);
+INSERT INTO `password_reset_token` VALUES (5,'2020-05-31 17:32:17','7289ccda-10cb-4491-8a9b-58b6371cb95b',2),(6,'2020-06-01 22:01:29','1543cfff-0ea2-43e7-9108-6b6414937f36',2),(7,'2020-06-02 18:45:53','06255a6a-4332-40ff-91f4-8eba46214a36',29),(8,'2020-06-14 17:14:36','856c6291-c60d-4846-a594-3e5e5abeba9d',2),(22,'2020-06-16 10:39:35','9796c4ce-18f6-4c76-8680-7f9fbec6f6b6',29);
 /*!40000 ALTER TABLE `password_reset_token` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -367,7 +367,7 @@ CREATE TABLE `user` (
 
 LOCK TABLES `user` WRITE;
 /*!40000 ALTER TABLE `user` DISABLE KEYS */;
-INSERT INTO `user` VALUES (2,'$2a$12$LtbYtEzOBdnsiD/E9Wtj2OFuhizNrqYQXGNsRX0WL3qujvSAP8GtK','B16DCCN168','tech.hungtq@gmail.com'),(29,'$2a$12$LtbYtEzOBdnsiD/E9Wtj2OmyXy7JygUh9YcIjAwdV.HPpyK8pry5W','B17DCCN123','hungict100@gmail.com');
+INSERT INTO `user` VALUES (2,'$2a$12$LtbYtEzOBdnsiD/E9Wtj2OFuhizNrqYQXGNsRX0WL3qujvSAP8GtK','B16DCCN168','tech.hungtq@gmail.com'),(29,'$2a$12$LtbYtEzOBdnsiD/E9Wtj2O0ALUqD7bCPdYUh5q/8DXe3XkCTNlnrq','B17DCCN123','hungict100@gmail.com');
 /*!40000 ALTER TABLE `user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -409,4 +409,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-06-14  0:24:38
+-- Dump completed on 2020-06-20 14:49:49

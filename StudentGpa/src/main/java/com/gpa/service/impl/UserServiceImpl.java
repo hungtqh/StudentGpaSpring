@@ -1,6 +1,5 @@
 package com.gpa.service.impl;
 
-import java.util.Optional;
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -35,6 +34,7 @@ public class UserServiceImpl implements UserService {
 
 		if (localUser != null) {
 			LOG.info("user {} already exists. Nothing will be done.", user.getUsername());
+			return null;
 		} else {
 			for (UserRole ur : userRoles) {
 				roleRepository.save(ur.getRole());
@@ -64,9 +64,9 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public void createPasswordResetTokenForUser(User user, String token) {
+	public PasswordResetToken createPasswordResetTokenForUser(User user, String token) {
 		PasswordResetToken myToken = new PasswordResetToken(token, user);
-		passwordResetTokenRepository.save(myToken);
+		return passwordResetTokenRepository.save(myToken);
 	}
 
 	@Override
@@ -76,9 +76,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public User findbyId(Long id) {
-		Optional<User> userFound =  userRepository.findById(id);
-		
-		return userFound.isPresent() ? userFound.get() : null;
+		return userRepository.findById(id).get();
 	}
 
 }

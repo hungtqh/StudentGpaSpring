@@ -37,6 +37,14 @@ hr {
 	padding: 5px 22px;
 }
 
+.title {
+    font-size: 19px;
+    line-height: 25px;
+    text-transform: uppercase;
+    color: #d30000;
+    font-weight: 600;
+}
+
 .card {
 	margin-bottom: 25px;
 }

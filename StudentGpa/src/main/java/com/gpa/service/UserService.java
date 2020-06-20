@@ -19,5 +19,5 @@ public interface UserService {
 
 	User findbyId(Long id);
 	
-	void createPasswordResetTokenForUser(User user, String token);
+	PasswordResetToken createPasswordResetTokenForUser(User user, String token);
 }

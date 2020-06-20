@@ -14,7 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.gpa.domain.Semester;
 import com.gpa.domain.Student;
@@ -41,7 +40,7 @@ public class StudentController {
 	@GetMapping("/studentMark")
 	public String studentMarkCurrentSemester(Model model, Principal principal) {
 		Semester currentSemester = semesterService.findCurrentSemester();
-		
+
 		return viewMark(currentSemester.getName(), model, principal);
 
 	}
@@ -49,7 +48,7 @@ public class StudentController {
 	@PostMapping("/studentMark")
 	public String studentMarkInSemester(@ModelAttribute("semesterName") String semesterName, Model model,
 			Principal principal) {
-		
+
 		return viewMark(semesterName, model, principal);
 	}
 
@@ -79,7 +78,7 @@ public class StudentController {
 
 			listResultsInSemester.add(listGpaResultsTillNow.get(0));
 			listResultsInSemester.add(listGpaResultsTillNow.get(1));
-			
+
 			/*
 			 * semesterName -- 0 
 			 * marks -- 1 
@@ -106,11 +105,13 @@ public class StudentController {
 		model.addAttribute("classActiveAllMarks", false);
 		model.addAttribute("classActiveMark", true);
 
-		List<StudentResult> studentResults = resultService.findResultInSemester(student.getId(), semesterName);
-
-		List<StudentResult> resultsTillSemester = resultService.findResultTillSemester(student.getId(), semesterName);
-
 		if (semesterService.findBySemesterName(semesterName) != null) {
+
+			List<StudentResult> studentResults = resultService.findResultInSemester(student.getId(), semesterName);
+
+			List<StudentResult> resultsTillSemester = resultService.findResultTillSemester(student.getId(),
+					semesterName);
+
 			List<Object> listResults = MarkUtility.calculateMarkInSemester(semesterName, studentResults);
 
 			model.addAttribute("hasResult", true);
@@ -118,14 +119,14 @@ public class StudentController {
 			model.addAttribute("marks", listResults.get(1));
 			model.addAttribute("gpaInSemester", listResults.get(2));
 			model.addAttribute("passedCredits", listResults.get(3));
-			
+
 			List<Object> listGpaResultsTillNow = MarkUtility.calculateMarkTillSemester(resultsTillSemester);
 			model.addAttribute("passedCreditsTillNow", listGpaResultsTillNow.get(0));
 			model.addAttribute("gpaTillNow", listGpaResultsTillNow.get(1));
-			
+
 			listResults.add(listGpaResultsTillNow.get(0));
 			listResults.add(listGpaResultsTillNow.get(1));
-			
+
 			MarkUtility.listMarks.clear();
 			MarkUtility.listMarks.add(listResults);
 		}
@@ -139,11 +140,11 @@ public class StudentController {
 		if (MarkUtility.listMarks.size() == 0) {
 			return "redirect:/home";
 		}
-		
+
 		User user = userService.findByUsername(principal.getName());
 
 		Student student = user.getStudent();
-		
+
 		ByteArrayInputStream in = ExcelGenerator.allSemesterMarksToExcel(student, MarkUtility.listMarks);
 
 		HttpHeaders headers = new HttpHeaders();

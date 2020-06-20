@@ -9,13 +9,13 @@ import com.gpa.domain.StudentResult;
 import com.gpa.domain.Subject;
 
 public class MarkUtility {
-	
+
 	public static List<List<Object>> listMarks = new ArrayList<>();;
-	
+
 	public static float markInGpa(String markByChar) {
 		float result = 0;
 		switch (markByChar) {
-		
+
 			case "A+":
 				result = 4;
 				break;
@@ -30,21 +30,23 @@ public class MarkUtility {
 				break;
 			case "C+":
 				result = 2.5f;
-				break;	
+				break;
 			case "C":
 				result = 2;
-				break;	
+				break;
 			case "D+":
 				result = 1.5f;
-				break;	
+				break;
 			case "D":
 				result = 1;
 				break;
 			case "F":
 				result = 0;
-				break;	
+				break;
+			default:
+				throw new NullPointerException();
 		}
-		
+
 		return result;
 	}
 
@@ -72,18 +74,23 @@ public class MarkUtility {
 			gpaInSemester += MarkUtility.markInGpa(charMark) * subjectCredits;
 		}
 
-		gpaInSemester /= creditsInSemester;
-		
-		String semesterFullName = semesterName.charAt(4) + " - Năm học ";
-		int semesterInt = Integer.parseInt(semesterName.substring(0, 4));
-		semesterFullName += String.valueOf(semesterInt) + '-' + String.valueOf(semesterInt + 1);
-		
+		if (creditsInSemester != 0) {
+			gpaInSemester /= creditsInSemester;
+		}
+
+		String semesterFullName= "";
+		if (semesterName != null && !semesterName.isEmpty() && semesterName.length() == 5) {
+			semesterFullName = semesterName.charAt(4) + " - Năm học ";
+			int semesterInt = Integer.parseInt(semesterName.substring(0, 4));
+			semesterFullName += String.valueOf(semesterInt) + '-' + String.valueOf(semesterInt + 1);
+		} 
+
 		List<Object> listResults = new ArrayList<>();
 		listResults.add(semesterFullName);
 		listResults.add(marks);
 		listResults.add(gpaInSemester);
 		listResults.add(passedCredits);
-		
+
 		return listResults;
 	}
 
@@ -105,12 +112,12 @@ public class MarkUtility {
 				marksTillNow.put(subject, currentResult);
 			}
 		}
-		
+
 		/* Iterate and get gpa till now */
 		int passedCreditsTillNow = 0;
 		int totalCreditsTillNow = 0;
 		float gpaTillNow = 0;
-		
+
 		for (Map.Entry<Subject, StudentResult> entry : marksTillNow.entrySet()) {
 			int subjectCredits = entry.getKey().getNumberOfCredits();
 			String charMark = entry.getValue().getMarkToChar();
@@ -121,15 +128,16 @@ public class MarkUtility {
 			totalCreditsTillNow += subjectCredits;
 			gpaTillNow += MarkUtility.markInGpa(charMark) * subjectCredits;
 		}
-		
-		gpaTillNow /= totalCreditsTillNow;
-		
+
+		if (totalCreditsTillNow != 0) {
+			gpaTillNow /= totalCreditsTillNow;
+		}
 		List<Object> listGpaResultsTillNow = new ArrayList<>();
-		
+
 		listGpaResultsTillNow.add(passedCreditsTillNow);
 		listGpaResultsTillNow.add(gpaTillNow);
-		
+
 		return listGpaResultsTillNow;
-		
+
 	}
 }

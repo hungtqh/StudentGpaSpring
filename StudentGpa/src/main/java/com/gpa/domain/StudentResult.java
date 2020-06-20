@@ -23,8 +23,17 @@ public class StudentResult {
 	
 	private String markToChar;
 	
-//	private boolean pass;
-	
+	public StudentResult() {
+	}
+
+	public StudentResult(float mark1, float mark2, float mark3, float averageMark, String markToChar) {
+		this.mark1 = mark1;
+		this.mark2 = mark2;
+		this.mark3 = mark3;
+		this.averageMark = averageMark;
+		this.markToChar = markToChar;
+	}
+
 	@OneToOne
 	@JoinColumn(name = "student_register_id", nullable = false)
 	private StudentRegister studentRegister;
@@ -69,8 +78,6 @@ public class StudentResult {
 		this.averageMark = averageMark;
 	}
 
-	
-
 	public String getMarkToChar() {
 		return markToChar;
 	}
@@ -78,14 +85,6 @@ public class StudentResult {
 	public void setMarkToChar(String markToChar) {
 		this.markToChar = markToChar;
 	}
-
-//	public boolean isPass() {
-//		return pass;
-//	}
-//
-//	public void setPass(boolean pass) {
-//		this.pass = pass;
-//	}
 
 	public StudentRegister getStudentRegister() {
 		return studentRegister;
