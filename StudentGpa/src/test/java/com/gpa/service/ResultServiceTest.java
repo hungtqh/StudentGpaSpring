@@ -115,6 +115,7 @@ class ResultServiceTest {
 	
 	@Test
 	void testFindResultTillSemesterNotFound4() {
+		// this should fail
 		List<StudentResult> results = resultService.findResultTillSemester(2L, "FakeSemester");
 		
 		assertEquals(0, results.size());

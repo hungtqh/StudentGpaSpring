@@ -1,7 +1,5 @@
 package com.gpa.utility;
 
-import java.util.Locale;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.mail.SimpleMailMessage;
@@ -15,7 +13,7 @@ public class MailConstructor {
 	@Autowired
 	private Environment env;
 
-	public SimpleMailMessage constructResetTokenEmail(String contextPath, Locale locale, String token, User user,
+	public SimpleMailMessage constructResetTokenEmail(String contextPath, String token, User user,
 			String password) {
 		String url = contextPath + "/forgetPassword?token=" + token;
 		String message = "\nNhấn vào đây để thay đổi mật khẩu. Mật khẩu của bạn là "
@@ -26,7 +24,7 @@ public class MailConstructor {
 		email.setTo(user.getEmail());
 		email.setSubject("PTIT - Quên mật khẩu");
 		email.setText(url + message);
-		email.setFrom(env.getProperty("email"));
+		email.setFrom(env.getProperty("support-email"));
 		
 		return email;
 	}

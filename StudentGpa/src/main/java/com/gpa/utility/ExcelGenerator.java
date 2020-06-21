@@ -41,15 +41,30 @@ public class ExcelGenerator {
 
 			// student info
 			Row row = sheet.createRow(rowIdx++);
-			row.createCell(5).setCellValue("Tên SV:");
-			row.createCell(6).setCellValue("");
-			row.createCell(7).setCellValue(student.getName());
-
-			row = sheet.createRow(rowIdx++);
-			row.createCell(5).setCellValue("Mã SV:");
+			row.createCell(5).setCellValue("Mã sinh viên:");
 			row.createCell(6).setCellValue("");
 			row.createCell(7).setCellValue(student.getCode());
 
+			row = sheet.createRow(rowIdx++);
+			row.createCell(5).setCellValue("Tên sinh viên:");
+			row.createCell(6).setCellValue("");
+			row.createCell(7).setCellValue(student.getName());
+			
+			row = sheet.createRow(rowIdx++);
+			row.createCell(5).setCellValue("Giới tính:");
+			row.createCell(6).setCellValue("");
+			row.createCell(7).setCellValue(student.getGender());
+			
+			row = sheet.createRow(rowIdx++);
+			row.createCell(5).setCellValue("Ngày sinh:");
+			row.createCell(6).setCellValue("");
+			row.createCell(7).setCellValue(student.getDateOfBirth());
+			
+			row = sheet.createRow(rowIdx++);
+			row.createCell(5).setCellValue("Quê quán:");
+			row.createCell(6).setCellValue("");
+			row.createCell(7).setCellValue(student.getPlaceOfBirth());
+			
 			row = sheet.createRow(rowIdx++);
 			row.createCell(5).setCellValue("Lớp:");
 			row.createCell(6).setCellValue("");

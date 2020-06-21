@@ -96,8 +96,7 @@ public class HomeController {
 
 		String appUrl = "http://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath();
 
-		SimpleMailMessage newEmail = mailConstructor.constructResetTokenEmail(appUrl, request.getLocale(), token, user,
-				password);
+		SimpleMailMessage newEmail = mailConstructor.constructResetTokenEmail(appUrl, token, user, password);
 
 		mailSender.send(newEmail);
 

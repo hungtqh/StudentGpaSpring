@@ -17,7 +17,7 @@ public class SemesterServiceImpl implements SemesterService {
 	
 	@Override
 	public Semester findCurrentSemester() {
-		return semesterRepository.findCurrentSemester();
+		return semesterRepository.findByActiveTrue();
 	}
 
 	@Override

@@ -34,63 +34,63 @@ class MarkUtilityTest {
 	void testMarkInGpaSuccess1() {
 		float mark = MarkUtility.markInGpa("A+");
 		
-		assertEquals(4, mark);
+		assertEquals(4f, mark);
 	}
 	
 	@Test
 	void testMarkInGpaSuccess2() {
 		float mark = MarkUtility.markInGpa("A");
 		
-		assertEquals(3.7, mark);
+		assertEquals(3.7f, mark);
 	}
 	
 	@Test
 	void testMarkInGpaSuccess3() {
 		float mark = MarkUtility.markInGpa("B+");
 		
-		assertEquals(3.5, mark);
+		assertEquals(3.5f, mark);
 	}
 	
 	@Test
 	void testMarkInGpaSuccess4() {
 		float mark = MarkUtility.markInGpa("B");
 		
-		assertEquals(3.0, mark);
+		assertEquals(3.0f, mark);
 	}
 	
 	@Test
 	void testMarkInGpaSuccess5() {
 		float mark = MarkUtility.markInGpa("C+");
 		
-		assertEquals(2.5, mark);
+		assertEquals(2.5f, mark);
 	}
 	
 	@Test
 	void testMarkInGpaSuccess6() {
 		float mark = MarkUtility.markInGpa("C");
 		
-		assertEquals(2.0, mark);
+		assertEquals(2.0f, mark);
 	}
 
 	@Test
 	void testMarkInGpaSuccess7() {
 		float mark = MarkUtility.markInGpa("D+");
 		
-		assertEquals(1.5, mark);
+		assertEquals(1.5f, mark);
 	}
 	
 	@Test
 	void testMarkInGpaSuccess8() {
 		float mark = MarkUtility.markInGpa("D");
 		
-		assertEquals(1, mark);
+		assertEquals(1f, mark);
 	}
 	
 	@Test
 	void testMarkInGpaSuccess9() {
 		float mark = MarkUtility.markInGpa("F");
 		
-		assertEquals(0, mark);
+		assertEquals(0f, mark);
 	}
 	
 	@Test
@@ -263,7 +263,6 @@ class MarkUtilityTest {
 		float gpaTillNow = (float) listGpaResultsTillNow.get(1);
 		
 		DecimalFormat df = new DecimalFormat("#.##");
-		df.setRoundingMode(RoundingMode.CEILING);
 		
 		assertTrue(
 				passedCreditsTillNow == 12 &&
@@ -271,26 +270,77 @@ class MarkUtilityTest {
 				);
 	}
 	
-//	@Test
-//	void testCalculateMarkTillSemesterSuccess2() {
-//		
-//		List<StudentResult> resultsTillSemester = new ArrayList<>();
-//		
-//		// dumping data
-//		StudentResult res1 = new StudentResult(mark1, mark2, mark3, averageMark, markToChar);
-//		
-//		List<Object> listGpaResultsTillNow = MarkUtility.calculateMarkTillSemester(resultsTillSemester);
-//		int passedCreditsTillNow = (int) listGpaResultsTillNow.get(0);
-//		float gpaTillNow = (float) listGpaResultsTillNow.get(1);
-//		
-//		DecimalFormat df = new DecimalFormat("#.##");
-//		df.setRoundingMode(RoundingMode.CEILING);
-//		
-//		assertTrue(
-//				passedCreditsTillNow == 12 &&
-//				df.format(gpaTillNow).equals("2.8")
-//				);
-//	}
+	@Test
+	void testCalculateMarkTillSemesterSuccess2() {
+		// test with studied again case, better result
+		
+		String semesterName = "20193";
+		
+		User user = userService.findByUsername("B16DCCN168");
+		Student student = user.getStudent();
+		List<StudentResult> resultsTillSemester = resultService.findResultTillSemester(student.getId(),
+				semesterName);
+		
+		String mmtMark = "", tthcmMark = "";
+		
+		for (StudentResult result : resultsTillSemester) {
+			Subject subject = result.getStudentRegister().getCourse().getSubject();
+			if (subject.getName().equals("Mạng máy tính")) {
+				mmtMark = result.getMarkToChar();
+			}
+			
+			if (subject.getName().equals("Tư tưởng Hồ Chí Minh")) {
+				tthcmMark = result.getMarkToChar();
+			}
+		}
+		
+		List<Object> listGpaResultsTillNow = MarkUtility.calculateMarkTillSemester(resultsTillSemester);
+		int passedCreditsTillNow = (int) listGpaResultsTillNow.get(0);
+		float gpaTillNow = (float) listGpaResultsTillNow.get(1);
+		
+		DecimalFormat df = new DecimalFormat("#.##");
+		
+		assertTrue(
+				mmtMark.equals("B") &&
+				tthcmMark.equals("A") &&
+				passedCreditsTillNow == 15 &&
+				df.format(gpaTillNow).equals("3.64")
+				);
+	}
+	
+	@Test
+	void testCalculateMarkTillSemesterSuccess3() {
+		// test with studied again case, worse result
+	
+		String semesterName = "20193";
+		
+		User user = userService.findByUsername("B17DCCN123");
+		Student student = user.getStudent();
+		List<StudentResult> resultsTillSemester = resultService.findResultTillSemester(student.getId(),
+				semesterName);
+		
+		String tktMark = "";
+		
+		for (StudentResult result : resultsTillSemester) {
+			Subject subject = result.getStudentRegister().getCourse().getSubject();
+			if (subject.getName().equals("Toán kinh tế")) {
+				tktMark = result.getMarkToChar();
+				break;
+			}
+		}
+		
+		List<Object> listGpaResultsTillNow = MarkUtility.calculateMarkTillSemester(resultsTillSemester);
+		int passedCreditsTillNow = (int) listGpaResultsTillNow.get(0);
+		float gpaTillNow = (float) listGpaResultsTillNow.get(1);
+		
+		DecimalFormat df = new DecimalFormat("#.##");
+		
+		assertTrue(
+				tktMark.equals("C") && 
+				passedCreditsTillNow == 18 && 
+				df.format(gpaTillNow).equals("3.19")
+				);
+	}
 	
 	@Test
 	void testCalculateMarkTillSemesterFail1() {

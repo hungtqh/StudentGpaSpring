@@ -17,7 +17,7 @@ public class MarkUtility {
 		switch (markByChar) {
 
 			case "A+":
-				result = 4;
+				result = 4f;
 				break;
 			case "A":
 				result = 3.7f;
@@ -26,22 +26,22 @@ public class MarkUtility {
 				result = 3.5f;
 				break;
 			case "B":
-				result = 3;
+				result = 3f;
 				break;
 			case "C+":
 				result = 2.5f;
 				break;
 			case "C":
-				result = 2;
+				result = 2f;
 				break;
 			case "D+":
 				result = 1.5f;
 				break;
 			case "D":
-				result = 1;
+				result = 1f;
 				break;
 			case "F":
-				result = 0;
+				result = 0f;
 				break;
 			default:
 				throw new NullPointerException();
@@ -105,9 +105,10 @@ public class MarkUtility {
 			if (marksTillNow.containsKey(subject)) {
 				StudentResult lastResult = marksTillNow.get(subject);
 
+				// if greater than the past, then update
 				if (currentResult.getAverageMark() >= lastResult.getAverageMark()) {
 					marksTillNow.put(subject, currentResult);
-				}
+				} 
 			} else {
 				marksTillNow.put(subject, currentResult);
 			}

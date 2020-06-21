@@ -148,7 +148,7 @@ public class StudentController {
 		ByteArrayInputStream in = ExcelGenerator.allSemesterMarksToExcel(student, MarkUtility.listMarks);
 
 		HttpHeaders headers = new HttpHeaders();
-		headers.add("Content-Disposition", "attachment; filename=studentMarksExport.xlsx");
+		headers.add("Content-Disposition", "attachment; filename=diemSV.xlsx");
 
 		return ResponseEntity.ok().headers(headers).body(new InputStreamResource(in));
 	}

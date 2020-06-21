@@ -82,11 +82,20 @@ class UserServiceTest {
 		userRoles.add(new UserRole(user, role1));
 		
 		User createdUser = userService.createUser(user, userRoles);
+		Role dbRole = null;
+		
+		for (UserRole userRole : createdUser.getUserRoles()) {
+			if (userRole.getRole().getName().equals("ROLE_STUDENT")) {
+				dbRole = userRole.getRole();
+				break;
+			}
+		}
 		
 		assertTrue(
 				createdUser.getUsername().equals("B16DCCN567") &&
 				SecurityUtility.passwordEncoder().matches("54321", createdUser.getPassword()) &&
 				createdUser.getEmail().equals("hungict4321@gmail.com") &&
+				dbRole.getName().equals("ROLE_STUDENT") &&
 				!createdUser.getUserRoles().isEmpty()
 				);
 	}
