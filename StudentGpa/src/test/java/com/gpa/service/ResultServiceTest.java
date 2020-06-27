@@ -12,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.gpa.domain.StudentResult;
 
 @SpringBootTest
-@Transactional
 class ResultServiceTest {
 
 	@Autowired

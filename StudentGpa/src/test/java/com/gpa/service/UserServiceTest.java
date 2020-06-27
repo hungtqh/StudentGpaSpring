@@ -1,6 +1,9 @@
 package com.gpa.service;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.HashSet;
 import java.util.NoSuchElementException;
@@ -27,6 +30,36 @@ class UserServiceTest {
 	private UserService userService;
 
 	/* Test Create User */
+
+	@Test
+	void testCreateUserSuccess() {
+		User user = new User();
+		user.setUsername("B16DCCN567");
+		user.setPassword(SecurityUtility.passwordEncoder().encode("54321"));
+		user.setEmail("hungict4321@gmail.com");
+
+		Role role1 = new Role();
+		role1.setRoleId(1);
+		role1.setName("ROLE_STUDENT");
+
+		Set<UserRole> userRoles = new HashSet<>();
+		userRoles.add(new UserRole(user, role1));
+
+		User createdUser = userService.createUser(user, userRoles);
+		Role dbRole = null;
+
+		for (UserRole userRole : createdUser.getUserRoles()) {
+			if (userRole.getRole().getName().equals("ROLE_STUDENT")) {
+				dbRole = userRole.getRole();
+				break;
+			}
+		}
+
+		assertTrue(createdUser.getUsername().equals("B16DCCN567")
+				&& SecurityUtility.passwordEncoder().matches("54321", createdUser.getPassword())
+				&& createdUser.getEmail().equals("hungict4321@gmail.com") && dbRole.getName().equals("ROLE_STUDENT")
+				&& !createdUser.getUserRoles().isEmpty());
+	}
 
 	@Test
 	void testCreateUserNullPointerException() {
@@ -58,46 +91,10 @@ class UserServiceTest {
 		Set<UserRole> userRoles = new HashSet<>();
 
 		User createdUser = userService.createUser(user, userRoles);
-		
-		assertTrue(
-				createdUser.getUsername().equals("B16DCCN444") &&
-				SecurityUtility.passwordEncoder().matches("12345", createdUser.getPassword()) &&
-				createdUser.getEmail().equals("hungict1234@gmail.com") &&
-				createdUser.getUserRoles().isEmpty()
-				);
-	}
 
-	@Test
-	void testCreateUserSuccess() {
-		User user = new User();
-		user.setUsername("B16DCCN567");
-		user.setPassword(SecurityUtility.passwordEncoder().encode("54321"));
-		user.setEmail("hungict4321@gmail.com");
-
-		Role role1 = new Role();
-		role1.setRoleId(1);
-		role1.setName("ROLE_STUDENT");
-
-		Set<UserRole> userRoles = new HashSet<>();
-		userRoles.add(new UserRole(user, role1));
-		
-		User createdUser = userService.createUser(user, userRoles);
-		Role dbRole = null;
-		
-		for (UserRole userRole : createdUser.getUserRoles()) {
-			if (userRole.getRole().getName().equals("ROLE_STUDENT")) {
-				dbRole = userRole.getRole();
-				break;
-			}
-		}
-		
-		assertTrue(
-				createdUser.getUsername().equals("B16DCCN567") &&
-				SecurityUtility.passwordEncoder().matches("54321", createdUser.getPassword()) &&
-				createdUser.getEmail().equals("hungict4321@gmail.com") &&
-				dbRole.getName().equals("ROLE_STUDENT") &&
-				!createdUser.getUserRoles().isEmpty()
-				);
+		assertTrue(createdUser.getUsername().equals("B16DCCN444")
+				&& SecurityUtility.passwordEncoder().matches("12345", createdUser.getPassword())
+				&& createdUser.getEmail().equals("hungict1234@gmail.com") && createdUser.getUserRoles().isEmpty());
 	}
 
 	/* TestFindByUsername */
@@ -106,7 +103,7 @@ class UserServiceTest {
 	void testFindByUsernameSuccess() {
 		User user = userService.findByUsername("B16DCCN168");
 
-		assertEquals(user.getUsername(), "B16DCCN168");
+		assertEquals("B16DCCN168", user.getUsername());
 	}
 
 	@Test
@@ -141,17 +138,14 @@ class UserServiceTest {
 
 		User updatedUser = userService.save(user);
 
-		assertTrue(
-				updatedUser.getUsername().equals("B16Test") &&
-				SecurityUtility.passwordEncoder().matches("pass", updatedUser.getPassword()) &&
-				updatedUser.getEmail().equals("email@gmail.com") &&
-				!updatedUser.getUserRoles().isEmpty()
-				);
+		assertTrue(updatedUser.getUsername().equals("B16Test")
+				&& SecurityUtility.passwordEncoder().matches("pass", updatedUser.getPassword())
+				&& updatedUser.getEmail().equals("email@gmail.com") && !updatedUser.getUserRoles().isEmpty());
 	}
 
 	@Test
 	void testSaveNull() {
-		User user = userService.findByUsername(null);
+		User user = userService.findByUsername("abc");
 
 		assertThrows(NullPointerException.class, () -> {
 			user.setUsername("B16Test");
@@ -166,12 +160,12 @@ class UserServiceTest {
 	void testFindByEmail() {
 		User user = userService.findByEmail("hungict100@gmail.com");
 
-		assertEquals(user.getEmail(), "hungict100@gmail.com");
+		assertEquals("hungict100@gmail.com", user.getEmail());
 	}
 
 	@Test
 	void testFindByEmailNull1() {
-		User user = userService.findByEmail("fakeemail@gmail.com");
+		User user = userService.findByEmail("fakeEmail@gmail.com");
 
 		assertNull(user);
 	}
@@ -193,33 +187,43 @@ class UserServiceTest {
 	/* TestGetPasswordResetToken */
 
 	@Test
+	void testGetPasswordResetTokenSuccess() {
+		PasswordResetToken token = userService.getPasswordResetToken("81a526aa-8c06-4a5e-bb76-39a86e880c5d");
+
+		assertEquals("81a526aa-8c06-4a5e-bb76-39a86e880c5d", token.getToken());
+	}
+
+	@Test
 	void testGetPasswordResetTokenNotFound1() {
 		PasswordResetToken token = userService.getPasswordResetToken("FakeToken");
-		
+
 		assertNull(token);
 	}
-	
+
 	@Test
 	void testGetPasswordResetTokenNotFound2() {
 		PasswordResetToken token = userService.getPasswordResetToken("");
-		
+
 		assertNull(token);
 	}
 
 	@Test
 	void testGetPasswordResetTokenNotFound3() {
 		PasswordResetToken token = userService.getPasswordResetToken(null);
-		
+
 		assertNull(token);
 	}
-	
+
 	/* TestFindById */
 
 	@Test
 	void testFindbyIdSuccess() {
 		User user = userService.findbyId(2L);
 
-		assertNotNull(user);
+		assertTrue(	
+					user.getId() == 2L && 
+					user.getUsername().equals("B16DCCN168")
+				);
 	}
 
 	@Test
@@ -229,7 +233,7 @@ class UserServiceTest {
 			userService.findbyId(100L);
 		});
 	}
-	
+
 	@Test
 	void testFindbyIdNotFound2() {
 
