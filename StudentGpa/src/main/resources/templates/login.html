@@ -41,15 +41,19 @@
 
 									<form th:action="@{/login}" method="post">
 										<div class="form-group">
-											<label for="username">* Tên tài khoản: </label> <input
-												required="required" type="text" class="form-control"
-												id="username" name="username">
+											<label for="username">Tên tài khoản <span
+												style="color: red;">*</span></label> <input required="required"
+												type="text" class="form-control"
+												placeholder="Nhập tên tài khoản" id="username"
+												name="username">
 										</div>
 
 										<div class="form-group">
-											<label for="password">* Mật khẩu: </label> <input
-												required="required" type="password" class="form-control"
-												id="password" name="password">
+											<label for="password">Mật khẩu <span
+												style="color: red;">*</span></label> <input
+												placeholder="Nhập mật khẩu" required="required"
+												type="password" class="form-control" id="password"
+												name="password">
 										</div>
 
 										<div class="form-group">
@@ -81,11 +85,12 @@
 
 									<form th:action="@{/forgetPassword}" method="post">
 										<div class="form-group">
-											<label for="recoverEmail">* Email của bạn: </label> <input
-												required="required" type="email" class="form-control"
+											<label for="recoverEmail">Email của bạn <span
+												style="color: red;">*</span></label> <input required="required"
+												type="email" class="form-control"
+												placeholder="Nhập địa chỉ email đã đăng ký"
 												id="recoverEmail" name="email">
-											<p style="color: #828282;">Nhập địa chỉ email đã đăng ký
-												tại đây.</p>
+
 										</div>
 
 										<button type="submit" class="btn btn-primary">Gửi</button>

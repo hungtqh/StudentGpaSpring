@@ -40,21 +40,26 @@
 										<input type="hidden" name="id" th:value="${user.id}">
 
 										<div class="form-group">
-											<label for="password">* Mật khẩu hiện tại</label> <input
-												type="password" required="required" class="form-control"
-												id="password" name="password">
+											<label for="password">Mật khẩu hiện tại <span
+												style="color: red;">*</span></label> <input type="password"
+												required="required" class="form-control"
+												placeholder="Nhập mật khẩu hiện tại" id="password"
+												name="password">
 										</div>
 
 
 										<div class="form-group">
-											<label for="newPassword">* Mật khẩu mới</label> <input
-												type="password" required="required" class="form-control"
-												id="newPassword" name="newPassword">
+											<label for="newPassword">Mật khẩu mới <span
+												style="color: red;">*</span></label> <input type="password"
+												required="required" class="form-control"
+												placeholder="Nhập mật khẩu mới" id="newPassword"
+												name="newPassword">
 										</div>
 										<div id="checkPasswordMatch" style="color: red;"></div>
 										<div class="form-group">
-											<label for="confirmPassword">* Nhập lại mật khẩu mới</label>
-											<input type="password" class="form-control"
+											<label for="confirmPassword">Nhập lại mật khẩu mới <span
+												style="color: red;">*</span></label> <input type="password"
+												class="form-control" placeholder="Nhập lại mật khẩu mới"
 												required="required" id="confirmPassword">
 										</div>
 
