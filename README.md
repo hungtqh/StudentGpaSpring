@@ -1,2 +1,2 @@
 # StudentGpaSpring
-View and calculate automactically student gpa
+Project for SQA
